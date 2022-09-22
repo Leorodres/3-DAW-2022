@@ -1,5 +1,5 @@
 <?php
-$EhPost=false;
+
     $servidor="localhost";
     $usuario = "root";
     $senha = "";
@@ -17,13 +17,8 @@ $EhPost=false;
         $sql = "INSERT INTO `alunos`(`nome`, `matricula`, `email`) VALUES ('$nome', '$mat', '$email')";
         $result = $conn->query($sql);
         echo $sql;
-    }
-    else{
-        $EhPost = true;
-        echo "aluno incluido";
-    }
-    
-    ?>
+    } 
+?>
     <!DOCTYPE html>
     <html lang="pt-br">
     <head>
@@ -42,9 +37,7 @@ $EhPost=false;
 
             <label for="email">Email do Aluno</label><br>
             <input type="text" name="email"><br>
-            
-
-            
+             
             <input type="submit" value="Enviar">
         </form>
     </body>
