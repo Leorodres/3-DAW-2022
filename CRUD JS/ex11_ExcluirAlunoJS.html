@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Aluno JS</title>
+    <script>
+        function enviarForm() { //(pNome, pMat, pEmail, pCpf) {
+                let pMat = document.getElementById("matricula").value;
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() {
+                    console.log("mudou status: " + this.readyState);
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("Chegou resposta: " + this.responseText)
+                        document.getElementById("msg").innerHTML = this.responseText;
+                    }
+                }
+                xmlHttp.open("GET", "http://localhost/3daw2022.2leonardo/ex11_ExcluirAlunoJS?matricula=" + pMat);
+                xmlHttp.send();
+                console.log("Enviei requisição");
+            }
+    </script>
+</head>
+<body>
+    <ul>
+        <li><a href="ex10IncluirAlunoJS.html">Incluir Aluno</a></li>
+        <li><a href="ex11_AlterarIncluirAlunoJS.html">Alterar Aluno</a></li>
+        <li><a href="ex11_ExcluirAlunoJS.html">Excluir Aluno</a></li>
+        <li><a href="ex11_ListarAlunoJS.html">Listar Aluno</a></li>
+    </ul>
+    <form id="formExcluir">
+        <h2>Digite A Matricula que irá excluir</h2>
+      <fieldset>
+          <label>Matricula:</label>
+          <input type = "text" name = "matricula" id = "matricula"><br><br>
+          <input type = "button" name = "envio" value="Enviar" 
+            onclick="enviarForm();">
+        </fieldset>
+    </form>
+    <p id="msg">
+    </p>
+</body>
+</html>
