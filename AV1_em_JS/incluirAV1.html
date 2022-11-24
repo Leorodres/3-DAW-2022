@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Incluir Disciplina JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        function enviarForm() {
+                let nome = document.getElementById("nome").value;
+                let periodo = document.getElementById("periodo").value;
+                let preRequisito = document.getElementById("preRequisito").value;
+                let creditos = document.getElementById("creditos").value;
+                let xmlHttp = new XMLHttpRequest();
+    
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1%20em%20JS/incluirAV1?nome=" + nome +
+                "&preRequisito=" + preRequisito + "&creditos=" + creditos + "&periodo=" + periodo);
+                xmlHttp.send();
+                location.reload();
+            }
+    </script>
+    <style> fieldset {background-color: #eeeeee;} legend {background-color: gray;color: white;padding: 5px 10px;}</style>
+</head>
+<body>
+    <ul>
+        <li><a href="incluirAV1.html">Incluir Disciplina</a></li>
+        <li><a href="criarUsuariosAV1.html">Criar Usuário</a></li>
+        <li><a href="alterarAV1.html">Alterar Disciplina</a></li>
+        <li><a href="excluirAV1.html">Excluir Disciplina</a></li>
+        <li><a href="listarUmAV1.html">Listar Um Disciplina</a></li>
+        <li><a href="listarTodosAV1.html">Listar Todos Disciplina</a></li>
+    </ul>
+    <form id="formIncluir">
+      <fieldset>
+        <legend style="font-size: 20px;">Digite os Dados da Disciplina</legend>
+          <label>Nome da disciplina:</label>
+          <input type = "text" name = "nome" id = "nome"><br><br>
+          <label>Período da disciplina:</label>
+          <input type = "text" name = "periodo" id = "periodo"><br><br>
+          <label>Id do Pré-Requisito Necessário:</label>
+          <input type = "text" name = "preRequisito" id = "preRequisito"><br><br>
+          <label>Créditos Necessários:</label>
+          <input type = "text" name = "creditos" id = "creditos"><br><br>
+          <input type = "button" name = "envio" value="Enviar" 
+            onclick="enviarForm();">
+        </fieldset>
+    </form>
+</body>
+</html>
