@@ -12,17 +12,9 @@
                 let periodo = document.getElementById("periodoAlt").value;
                 let preRequisito = document.getElementById("preRequisitoAlt").value;
                 let credito = document.getElementById("creditoAlt").value;
-                console.log(id);
-                console.log(nome);
-                console.log(periodo);
+                
                 let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("msg").innerHTML = this.responseText;
-                    }
-                }
-
-                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1%20em%20JS/alterarAV1?id=" + id + "&nome=" + nome + "&periodo=" + periodo
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1_em_JS/alterarAV1?id=" + id + "&nome=" + nome + "&periodo=" + periodo
                 + "&preRequisito=" + preRequisito + "&credito=" + credito);
                 xmlHttp.send();
             }
@@ -30,19 +22,21 @@
         function buscarDiscp() {
             let id = document.getElementById("id").value;
             let xmlHttp = new XMLHttpRequest();
+            
             xmlHttp.onreadystatechange = function() {
-                console.log("mudou status: " + this.readyState);
                 if (this.readyState == 4 && this.status == 200) {
                     let obj = JSON.parse(this.responseText);
+                    
                     document.getElementById("nomeAlt").value = obj.nome;
                     document.getElementById("periodoAlt").value = obj.periodo;
                     document.getElementById("preRequisitoAlt").value = obj.idPreRequisito;
                     document.getElementById("creditoAlt").value = obj.credito;
+                    
                     let formAlt = document.getElementById("formAlterar");
                     formAlt.style.display = "block";
                 }
             }
-            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1%20em%20JS/listarUmAV1?id=" + id);
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1_em_JS/listarUmAV1?id=" + id);
             xmlHttp.send();
         }
 
@@ -82,6 +76,5 @@
               onclick="enviarForm();">
           </fieldset>
       </form>
-      <p id="msg"></p>
 </body>
 </html>

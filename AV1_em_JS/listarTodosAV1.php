@@ -9,9 +9,12 @@
     {    
         $conn = new mysqli ($servidor, $user, $pass, $banco);
         $sql="SELECT * FROM `disciplina`";
+        
         $result=$conn->query($sql);
         $vetDiscp[] = array();
+        
         $i = 0;
+        
         While ($linha = $result->fetch_assoc()){
             $vetDiscp[$i] = $linha;
             $i++;

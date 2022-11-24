@@ -12,9 +12,11 @@
         $preRequisito = $_GET["preRequisito"]; 
         $periodo = $_GET["periodo"]; 
         $credito = $_GET["credito"]; 
+        
         $conn = new mysqli ($servidor, $user, $pass, $banco);
+        
         $sql="UPDATE `disciplina` SET `nome`='$nome',`periodo`='$periodo',`idPreRequisito`='$preRequisito',`credito`='$credito' WHERE `id` = $id";
-        echo $sql;
+        
         $result=$conn->query($sql);
         
     }

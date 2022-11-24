@@ -1,74 +1,87 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Listar Todos Disciplina JS</title>
+    <title>Listar Um Disciplina JS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         function carregaDisciplina() {
+
             let id = document.getElementById("id").value;
             let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        let objAlunos = this.responseText;
-                        let obj = JSON.parse(this.responseText);
-                        let x = 0;
-                        
-                        let valor = (obj[x].nome).localeCompare("undefined");
-                        if(valor!=0){
-                                for (x=0;x<obj.length;x++) {
-                                let linha = obj[x];
-                                criarLinhaTabela(linha);
-                            }
-                        }
-                    }
+
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let objAlunos = this.responseText;
+                    let obj = JSON.parse(this.responseText);
+                    criarLinhaTabela(obj);
                 }
-                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1%20em%20JS/listarTodosAV1.php");
-                xmlHttp.send();
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1_em_JS/listarUmAV1?id=" + id);
+            xmlHttp.send();
+
         }
 
         function criarLinhaTabela(linha) {
             let tabela = document.getElementById("tabela");
             let tr = document.createElement("tr");
-            
+
             //Coluna ID
-            let tdId = document.createElement("td"); 
+            let tdId = document.createElement("td");
             textnode = document.createTextNode(linha.id);
-            tdId.appendChild(textnode); 
+            tdId.appendChild(textnode);
             tr.appendChild(tdId);
 
             //Coluna Nome
-            let tdNome = document.createElement("td"); 
+            let tdNome = document.createElement("td");
             textnode = document.createTextNode(linha.nome);
-            tdNome.appendChild(textnode); 
-            tr.appendChild(tdNome); 
+            tdNome.appendChild(textnode);
+            tr.appendChild(tdNome);
 
             //Coluna Periodo
             let tdPeriodo = document.createElement("td");
             textnode = document.createTextNode(linha.periodo);
-            tdPeriodo.appendChild(textnode); 
+            tdPeriodo.appendChild(textnode);
             tr.appendChild(tdPeriodo);
 
             //Coluna Pre-Requisito
-            let tdPreReq = document.createElement("td"); 
+            let tdPreReq = document.createElement("td");
             textnode = document.createTextNode(linha.idPreRequisito);
-            tdPreReq.appendChild(textnode); 
-            tr.appendChild(tdPreReq); 
+            tdPreReq.appendChild(textnode);
+            tr.appendChild(tdPreReq);
 
             //Coluna Creditos
-            let tdCreditos = document.createElement("td"); 
+            let tdCreditos = document.createElement("td");
             textnode = document.createTextNode(linha.credito);
-            tdCreditos.appendChild(textnode); 
-            tr.appendChild(tdCreditos); 
+            tdCreditos.appendChild(textnode);
+            tr.appendChild(tdCreditos);
 
             tabela.appendChild(tr);
-            tabela.style.display="table";
+            tabela.style.display = "table";
+            let input = document.getElementById("id");
+            input.setAttribute("onclick", "location.reload();");
         }
 
     </script>
-    <style> tr{ text-align: center; } fieldset {background-color: #eeeeee;} legend {background-color: gray;color: white;padding: 5px 10px;}</style>
+    <style>
+        tr {
+            text-align: center;
+        }
+
+        fieldset {
+            background-color: #eeeeee;
+        }
+
+        legend {
+            background-color: gray;
+            color: white;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
+
 <body>
     <ul>
         <li><a href="incluirAV1.html">Incluir Disciplina</a></li>
@@ -80,13 +93,11 @@
     </ul>
 
     <form id="form">
-        <h2></h2>
         <fieldset>
             <legend style="font-size: 20px;">Digite o ID da disciplina que está buscando</legend>
             <label>Id da Disciplina:</label>
-            <input type = "text" name = "id" id = "id"><br><br>
-            <input type = "button" name = "envio" value="Enviar" 
-                onclick="carregaDisciplina();">
+            <input type="text" name="id" id="id"><br><br>
+            <input type="button" name="envio" value="Enviar" onclick="carregaDisciplina();">
         </fieldset>
     </form>
 
@@ -100,4 +111,5 @@
         </tr>
     </table>
 </body>
+
 </html>

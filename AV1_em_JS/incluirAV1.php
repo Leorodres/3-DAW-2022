@@ -11,7 +11,9 @@
         $periodo= $_GET["periodo"];
 
         $conn = new mysqli ($servidor, $user, $pass, $banco);
+        
         $sql="INSERT INTO `disciplina`(`nome`, `idPreRequisito`, `credito`, `periodo`) VALUES ('$nome', '$preRequisito', '$creditos', '$periodo')";
+        
         $result=$conn->query($sql);
     }
 ?>

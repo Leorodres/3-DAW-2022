@@ -8,7 +8,9 @@
         $id= $_GET["id"];
        
         $conn = new mysqli ($servidor, $user, $pass, $banco);
+        
         $sql="DELETE FROM `disciplina` WHERE `id` = '$id' ";
+        
         $result=$conn->query($sql);
         
     }
