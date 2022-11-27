@@ -41,9 +41,10 @@
                         
                         pontosSeg=pontosPrim;
                         segundo = primeiro;
+                        
                         pontosPrim=vetorTime[i].pontos;
                         primeiro = vetorTime[i];
-                        console.log(vetorTime[i]);
+                        
                     }
                     else if(vetorTime[i].pontos==pontosPrim||grupoAtual.localeCompare(segundo.grupo)!=0){
                         pontosSeg=vetorTime[i].pontos;
