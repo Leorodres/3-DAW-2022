@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Listar Todos Disciplina JS</title>
+    <title>Oitavas Copa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="estiloCopa.css">
     <script>
-        function carregaDisciplina() {
+        function carregaOitavas() {
             let xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -66,9 +66,7 @@
             
             for(let i=3; i<vetorPassaram.length;i=i+4){
                 criarLinhaTabela(vetorPassaram[i-3], vetorPassaram[i-2], vetorPassaram[i-1], vetorPassaram[i]);
-            }
-            console.log(vetorPassaram);
-            
+            }        
         }
         
         function criarLinhaTabela(equipe1, equipe2, equipe3, equipe4) {
@@ -117,9 +115,8 @@
         }
 
     </script>
-    <style> tr{ text-align: center; }</style>
 </head>
-<body onload="carregaDisciplina();">
+<body onload="carregaOitavas();">
     <ul>
         <li><a href="inserirSelecao.html">Inserir Seleção</a></li>
         <li><a href="alterarSelecao.html">Alterar Seleção</a></li>
