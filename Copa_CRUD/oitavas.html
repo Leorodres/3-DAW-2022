@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Listar Todos Disciplina JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estiloCopa.css">
+    <script>
+        function carregaDisciplina() {
+            let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let objAlunos = this.responseText;
+                        let obj = JSON.parse(this.responseText);
+                        let x = 0;
+                        let vetorTime = [];
+                        let valor = (obj[x].nome).localeCompare("undefined");
+                        if(valor!=0){
+                                for (x=0;x<obj.length;x++) {
+                                vetorTime[x] = obj[x]; 
+                            }
+                        }
+                        verPontos(vetorTime);
+                    }
+                }
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/oitavas.php");
+                xmlHttp.send();
+        }
+
+        function verPontos(vetorTime){
+            let pontosPrim = vetorTime[0].pontos, pontosSeg, 
+            primeiro = vetorTime[0],grupoAtual = vetorTime[0].grupo, segundo;
+            
+            let vetorPassaram = [16];
+            let k= 0;
+
+            for(let i=1;i<vetorTime.length;i++){
+                if(vetorTime[i].grupo.localeCompare(grupoAtual)== 0 ){
+                    if(vetorTime[i].pontos>pontosPrim){
+                        
+                        pontosSeg=pontosPrim;
+                        segundo = primeiro;
+                        pontosPrim=vetorTime[i].pontos;
+                        primeiro = vetorTime[i];
+                        console.log(vetorTime[i]);
+                    }
+                    else if(vetorTime[i].pontos==pontosPrim||grupoAtual.localeCompare(segundo.grupo)!=0){
+                        pontosSeg=vetorTime[i].pontos;
+                        segundo = vetorTime[i];
+                    }
+                }
+                else{
+                    vetorPassaram[k]=primeiro;
+                    vetorPassaram[k+1]=segundo;
+                    
+                    grupoAtual = vetorTime[i].grupo;
+                    pontosPrim = vetorTime[i].pontos;
+                    primeiro = vetorTime[i];
+                   
+                    k= k+2;               
+                }
+            }
+            vetorPassaram[k]=primeiro;
+            vetorPassaram[k+1]=segundo;
+            
+            for(let i=3; i<vetorPassaram.length;i=i+4){
+                criarLinhaTabela(vetorPassaram[i-3], vetorPassaram[i-2], vetorPassaram[i-1], vetorPassaram[i]);
+            }
+            console.log(vetorPassaram);
+            
+        }
+        
+        function criarLinhaTabela(equipe1, equipe2, equipe3, equipe4) {
+            let tabela = document.getElementById("tabela");
+            let tr = document.createElement("tr");
+            
+            //Coluna Equipe1
+            let tdEquipe1 = document.createElement("td"); 
+            textnode = document.createTextNode(equipe1.nome);
+            tdEquipe1.appendChild(textnode);
+            
+            tr.appendChild(tdEquipe1);
+
+            //Coluna Vs
+            let tdNome = document.createElement("td");
+            tr.appendChild(tdNome); 
+
+            //Coluna Equipe2
+            let tdEquipe2 = document.createElement("td");
+            textnode = document.createTextNode(equipe4.nome);
+            tdEquipe2.appendChild(textnode);
+            tr.appendChild(tdEquipe2);
+
+            tabela.appendChild(tr);
+            
+            let tr2 = document.createElement("tr");
+            
+            //Coluna Equipe3
+            let tdEquipe3 = document.createElement("td"); 
+            textnode = document.createTextNode(equipe2.nome);
+            tdEquipe3.appendChild(textnode);
+            
+            tr2.appendChild(tdEquipe3);
+
+            //Coluna Vs
+            let tdVs2 = document.createElement("td");
+            tr2.appendChild(tdVs2); 
+
+            //Coluna Equipe3
+            let tdEquipe4 = document.createElement("td");
+            textnode = document.createTextNode(equipe3.nome);
+            tdEquipe4.appendChild(textnode);
+            tr2.appendChild(tdEquipe4);
+
+            tabela.appendChild(tr2);
+        }
+
+    </script>
+    <style> tr{ text-align: center; }</style>
+</head>
+<body onload="carregaDisciplina();">
+    <ul>
+        <li><a href="inserirSelecao.html">Inserir Seleção</a></li>
+        <li><a href="alterarSelecao.html">Alterar Seleção</a></li>
+        <li><a href="cadastroJogo.html">Cadastrar Jogo</a></li>
+        <li><a href="calendarioJogo.html">Resultado do Jogo</a></li>
+        <li><a href="calendarioTodo.html">Calendário Inteiro</a></li>
+        <li><a href="calendarioSelecao.html">Calendário de uma Seleção</a></li>
+        <li><a href="calendarioGrupo.html">Calendário de um Grupo</a></li>
+        <li><a href="oitavas.html">Mostrar Oitavas de Final</a></li>
+    </ul>
+
+    <H1 style="text-align: center;">Oitavas de Final</H1>
+    <table id="tabela" style="border:1px solid; margin: auto;">
+        <tr style="border:1px solid">
+            <th style="border:1px solid; padding:0px 25px;">Equipe 1</th>
+            <th>Vs</th>
+            <th style="border:1px solid; padding:0px 25px;">Equipe 2</th>
+        </tr>
+    </table>
+</body>
+</html>
