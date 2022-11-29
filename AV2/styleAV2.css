@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #88BDBC;
+}
+
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #ffffff;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+tr, th {
+    padding:0px 25px;
+    border: solid;
+    border-width: 1px;
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+    padding: 3px;
+    border: solid;
+    border-width: 1px;
+    border-collapse: collapse;
+}
+
+fieldset {
+    background-color: #254E58;
+    border: 3px solid  black;
+    border-radius: 10px;
+    width: 25%;
+    color: white;
+}
+#formCentro{
+    margin: auto;
+    margin-top: 5%;
+}
+#formTabela{
+    margin-top: 1%;
+}
+
+input[type = submit], input[type = button]{
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: #254E58;
+    cursor: pointer;
+    color: white;
+}
+
+legend {
+    background-color: #ffffff;
+    color: black;
+    border: 3px solid;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+ul{
+
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    background-color: #254E58;
+}
+#index{
+    flex-direction: column;
+    width: 25%;
+    margin: auto;
+    border: solid 1px;
+}
+li, p{
+    margin: 0;
+    padding: 10px 25px 15px 10px;
+}
+p{
+    color: #ffffff;
+    padding-right: 250px;
+}

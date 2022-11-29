@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Buscar Carros AV2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleAV2.css">
+    <script>
+        function buscarCarros() {
+
+            let dado = document.getElementById("busca").value;
+            let escolha = document.querySelector('#filtro');
+
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText);
+                    let x = 0;
+
+                    let valor = (obj[x].nome).localeCompare("undefined");
+                    if (valor != 0) {
+                        for (x = 0; x < obj.length; x++) {
+                            let linha = obj[x];
+                            criarLinhaTabela(linha);
+                        }
+                    }
+                }
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/buscarCarros.php?escolha="+ escolha.value + "&dado=" + dado);
+            xmlHttp.send();
+
+        }
+
+        function criarLinhaTabela(linha) {
+            let tabela = document.getElementById("tabela");
+            let tr = document.createElement("tr");
+
+            //Coluna nome
+            let tdNome = document.createElement("td");
+            textnode = document.createTextNode(linha.nome);
+            tdNome.appendChild(textnode);
+            tr.appendChild(tdNome);
+
+            //Coluna categoria
+            let tdCategoria = document.createElement("td");
+            textnode = document.createTextNode(linha.categoria);
+            tdCategoria.appendChild(textnode);
+            tr.appendChild(tdCategoria);
+
+            //Coluna Cidade
+            let tdCidade = document.createElement("td");
+            textnode = document.createTextNode(linha.cidade);
+            tdCidade.appendChild(textnode);
+            tr.appendChild(tdCidade);
+
+            //Coluna Preco
+            let tdPreco = document.createElement("td");
+            textnode = document.createTextNode(linha.preco);
+            tdPreco.appendChild(textnode);
+            tr.appendChild(tdPreco);
+
+            //Coluna SelecaoA
+            let tdPeriodo = document.createElement("td");
+            textnode = document.createTextNode(linha.periodo);
+            tdPeriodo.appendChild(textnode);
+            tr.appendChild(tdPeriodo);
+
+            tabela.appendChild(tr);
+            tabela.style.display = "table";
+            
+            let input = document.getElementById("busca");
+            input.setAttribute("onclick", "location.reload();");
+
+            let envio = document.getElementById("envio");
+            envio.setAttribute("onclick", "location.reload();");
+        }
+
+    </script>
+</head>
+
+<body>
+    <ul id="menu">
+        <p>Falls Car</p>
+        <li><a href="inserirCarros.html">Inserir Carros</a></li>
+        <li><a href="alterarCarros.html">Alterar Carros</a></li>
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+    </ul>
+
+    <form >
+        <fieldset id="formTabela">
+            <legend style="font-size: 20px;">Buscar Carros</legend>
+            <label for="filtro">Digite o tipo de filtro para buscar o carro: </label>
+            <select name="filtro" id="filtro">
+                <option value="1">Cidade</option>
+                <option value="2">Categoria</option>
+                <option value="3">Periodo desejado</option>
+            </select><br><br>
+            <label for="busca">Digite a busca:</label>
+            <input type="text" name="busca" id="busca"><br><br>
+
+            <input type="button" name="envio" id="envio" value="Enviar" onclick="buscarCarros();">
+            
+        </fieldset>
+    </form>
+
+    <table id="tabela" style="display: none;">
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Cidade</th>
+            <th>Preço</th>
+            <th>Periodo Disponível</th>
+        </tr>
+    </table>
+</body>
+
+</html>
