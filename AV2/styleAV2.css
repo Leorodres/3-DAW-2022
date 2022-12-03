@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #88BDBC;
+}
+input[type="text"], input[type="password"]{
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+}
+h1, h2{
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 5px #000;
+}
+.fallsCar{
+    margin-top: 100px;
+}
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #ffffff;
+    
+}
+#registrar, #login{
+    font-size: 13px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+tr, th {
+    padding:0px 25px;
+    border: solid;
+    border-width: 1px;
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+    padding: 3px;
+    border: solid;
+    border-width: 1px;
+    border-collapse: collapse;
+}
+
+fieldset {
+    background-color: #254E58;
+    border: 3px solid  black;
+    border-radius: 10px;
+    width: 25%;
+    color: white;
+}
+#formCentro{
+    margin: auto;
+    margin-top: 5%;
+}
+#formTabela{
+    margin-top: 1%;
+}
+
+.envio{
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: #254E58;
+    cursor: pointer;
+    color: white;
+}
+.envio:hover, .botao:hover{
+    background-color: #326f7e;
+}
+
+.botao{
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #254E58;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+
+legend {
+    background-color: #ffffff;
+    color: black;
+    border: 3px solid;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+ul{
+
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    background-color: #254E58;
+}
+#index{
+    flex-direction: column;
+    width: 25%;
+    margin: auto;
+    margin-top: 7%;
+    border: solid 2px white;
+    border-radius: 10px;
+}
+li, .logo{
+    margin: 0;
+    padding: 10px 25px 15px 10px;
+}
+.logo{
+    color: #ffffff;
+}
+.logo:hover{
+    text-decoration: none;
+    background-color: #326f7e;
+}
+#espaco{
+    padding-left: 250px;
+}

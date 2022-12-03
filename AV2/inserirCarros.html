@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Inserir Carros AV2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleAV2.css">
+    <script>
+        function enviarForm() {
+            let nome = document.getElementById("nome").value;
+            let categoria = document.getElementById("categoria").value;
+            let cidade = document.getElementById("cidade").value;
+            let preco = document.getElementById("preco").value;
+            let xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/inserirCarros?nome=" + nome +
+                "&categoria=" + categoria + "&cidade=" + cidade + "&preco=" + preco);
+            xmlHttp.send();
+
+            location.reload();
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        
+        <a href="index.html" class="logo">Falls Car</a>
+        <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
+        <li><a href="alterarCarros.html">Alterar Carros</a></li>
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>  
+    </ul>
+    <form>
+        <fieldset id="formCentro">
+            <legend style="font-size: 20px;">Digite os Dados da Carros</legend>
+            
+            <label>Nome do Carro:</label>
+            <input type="text" name="nome" id="nome"><br><br>
+            <label>Categoria do Carro:</label>
+            <input type="text" name="categoria" id="categoria"><br><br>
+            <label>Cidade do Carro:</label>
+            <input type="text" name="cidade" id="cidade"><br><br>
+            <label>Preço do Carro:</label>
+            <input type="text" name="preco" id="preco"><br><br>
+            <input type="button" class="envio" name="envio" value="Enviar" onclick="enviarForm();">
+        </fieldset>
+    </form>
+</body>
+
+</html>
