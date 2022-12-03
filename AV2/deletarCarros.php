@@ -5,13 +5,13 @@
     $banco = "av2";
     if($_SERVER["REQUEST_METHOD"]=="GET")
     {    
-        $nome = $_GET["nome"];
-        $email= $_GET["email"];
-        $senha= $_GET["senha"];
-        
-
+        $placa= $_GET["placa"];
+       
         $conn = new mysqli ($servidor, $user, $pass, $banco);
-        $sql="INSERT INTO `cliente`(`nome`, `email`, `senha`) VALUES ('$nome', '$email', '$senha')";
+        
+        $sql="DELETE FROM `carros` WHERE `placa` = '$placa' ";
+        
         $result=$conn->query($sql);
+        
     }
 ?>

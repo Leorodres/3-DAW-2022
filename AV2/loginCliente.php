@@ -6,11 +6,12 @@
     if($_SERVER["REQUEST_METHOD"]=="GET")
     {    
         $nome = $_GET["nome"];
+        $email = $_GET["email"];
         $senha= $_GET["senha"];
         
 
         $conn = new mysqli ($servidor, $user, $pass, $banco);
-        $sql="SELECT * FROM `cliente` WHERE `nome` = '$nome'";
+        $sql="SELECT * FROM `cliente` WHERE `nome` = '$nome' AND `email` = '$email' AND `senha` = '$senha'";
         $result=$conn->query($sql);
         
         if ($result->num_rows != 0){

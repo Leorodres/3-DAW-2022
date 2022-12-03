@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleAV2.css">
+    <title>Alterar Carros AV2</title>
+    <script>
+        function enviarForm() { 
+                let nome = document.getElementById("nomeAlt").value;
+                let categoria = document.getElementById("catAlt").value;
+                let cidade = document.getElementById("cidAlt").value;
+                let placa = document.getElementById("placaAlt").value;
+                let preco = document.getElementById("precoAlt").value;
+                let periodo = document.getElementById("perAlt").value;
+                let disponivel = document.getElementById("dispAlt").value;
+                
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/alterarCarros.php?&nome=" + nome + "&categoria=" + categoria
+                + "&cidade=" + cidade + "&placa=" + placa  + "&preco=" + preco  + "&periodo=" + periodo + "&disponivel=" + disponivel);
+                xmlHttp.send();
+            }
+       
+        function buscarCarro() {
+            let placa = document.getElementById("placa").value;
+            let xmlHttp = new XMLHttpRequest();
+            
+            xmlHttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText);
+                    
+                    document.getElementById("nomeAlt").value = obj.nome;
+                    document.getElementById("catAlt").value = obj.categoria;
+                    document.getElementById("cidAlt").value = obj.cidade;
+                    document.getElementById("placaAlt").value = obj.placa;
+                    document.getElementById("precoAlt").value = obj.preco;
+                    document.getElementById("perAlt").value = obj.periodo;
+                    document.getElementById("dispAlt").value = obj.disponivel;
+
+                    let formAlt = document.getElementById("formAlterar");
+                    formAlt.style.display = "block";
+                }
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/busca1Carro?placa=" + placa);
+            xmlHttp.send();
+        }
+
+    </script>
+</head>
+<body>
+    <ul> 
+        <a href="index.html" class="logo">Falls Car Servidor</a>
+        <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
+        <li><a href="alterarCarros.html">Alterar Carros</a></li>
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+        <li><a href="mostrarCarros.html">Mostrar Carros</a></li>
+        
+        <li id="espaco"><a href="registrarCliente.html">Inserir Cliente</a></li>
+        <li><a href="alterarCliente.html">Alterar Cliente</a></li>
+        <li><a href="deletarCliente.html">Deletar Cliente</a></li>   
+    </ul>
+    <form>
+        <fieldset class="formCentro" style="text-align: center;">
+            <legend style="font-size: 20px;  text-align: left;">Digite a Placa do Carro para Alterar</legend>
+            <input type="text" name="placa" id="placa" placeholder="Digite a placa"><br><br>
+          <input type="button" class="envio" name="envio" value="Buscar" onclick="buscarCarro();">
+        </fieldset> 
+    </form>
+
+    <form id="formAlterar" style="display:none">
+        <fieldset class="formCentro">
+            <label>Nome:</label>
+            <input type = "text" name = "nome" id = "nomeAlt" value=""><br><br>
+            <label>Categoria:</label>
+            <input type = "text" name = "categoria" id = "catAlt" value=""><br><br>
+            <label>Cidade:</label>
+            <input type = "text" name = "cidade" id = "cidAlt" value=""><br><br>
+            <label>Placa:</label>
+            <input type = "text" name = "placa" id = "placaAlt" value=""><br><br>
+            <label>Preço:</label>
+            <input type = "text" name = "preco" id = "precoAlt" value=""><br><br>
+            <label>Periodo Disponivel:</label>
+            <input type = "text" name = "periodo" id = "perAlt" value=""><br><br>
+            <label>Disponibilidade Sim = [1] Não = [0]:</label>
+            <input type = "text" name = "disponivel" id = "dispAlt" value=""><br><br>
+            <input type = "button" class="envio" name = "envio" value="Alterar" 
+              onclick="enviarForm();">
+          </fieldset>
+      </form>
+</body>
+</html>

@@ -58,7 +58,7 @@ fieldset {
     width: 25%;
     color: white;
 }
-#formCentro{
+.formCentro{
     margin: auto;
     margin-top: 5%;
 }

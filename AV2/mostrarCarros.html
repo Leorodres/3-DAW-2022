@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mostrar Todos Carros AV2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleAV2.css">
+    <script>
+        function carregaCarros() {
+            let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let objAlunos = this.responseText;
+                        let obj = JSON.parse(this.responseText);
+                        let x = 0;
+                        
+                        let valor = (obj[x].nome).localeCompare("undefined");
+                        if(valor!=0){
+                                for (x=0;x<obj.length;x++) {
+                                let linha = obj[x];
+                                criarLinhaTabela(linha);
+                            }
+                        }
+                    }
+                }
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/mostrarCarros.php");
+                xmlHttp.send();
+        }
+
+        function criarLinhaTabela(linha) {
+            let tabela = document.getElementById("tabela");
+            let tr = document.createElement("tr");
+
+            //Coluna ID
+            let tdId = document.createElement("td");
+            textnode = document.createTextNode(linha.id);
+            tdId.appendChild(textnode);
+            tr.appendChild(tdId); 
+            
+            //Coluna nome
+            let tdNome = document.createElement("td");
+            textnode = document.createTextNode(linha.nome);
+            tdNome.appendChild(textnode);
+            tr.appendChild(tdNome);
+
+            //Coluna Categoria
+            let tdCategoria = document.createElement("td");
+            textnode = document.createTextNode(linha.categoria);
+            tdCategoria.appendChild(textnode);
+            tr.appendChild(tdCategoria);
+
+            //Coluna Cidade
+            let tdCidade = document.createElement("td");
+            textnode = document.createTextNode(linha.cidade);
+            tdCidade.appendChild(textnode);
+            tr.appendChild(tdCidade);
+
+            //Coluna Preco
+            let tdPlaca = document.createElement("td");
+            textnode = document.createTextNode(linha.placa);
+            tdPlaca.appendChild(textnode);
+            tr.appendChild(tdPlaca);
+
+            //Coluna Preco
+            let tdPreco = document.createElement("td");
+            textnode = document.createTextNode(linha.preco);
+            tdPreco.appendChild(textnode);
+            tr.appendChild(tdPreco);
+
+            //Coluna Periodo
+            let tdPeriodo = document.createElement("td");
+            textnode = document.createTextNode(linha.periodo);
+            tdPeriodo.appendChild(textnode);
+            tr.appendChild(tdPeriodo);
+
+            //Coluna Disponivel
+            let tdDisponivel = document.createElement("td");
+            textnode = document.createTextNode(linha.disponivel);
+            tdDisponivel.appendChild(textnode);
+            tr.appendChild(tdDisponivel); 
+
+            tabela.appendChild(tr);
+        }
+
+    </script>
+</head>
+<body onload="carregaCarros();">
+    <ul> 
+        <a href="index.html" class="logo">Falls Car Servidor</a>
+        <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
+        <li><a href="alterarCarros.html">Alterar Carros</a></li>
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+        <li><a href="mostrarCarros.html">Mostrar Carros</a></li>
+        
+        <li id="espaco"><a href="registrarCliente.html">Inserir Cliente</a></li>
+        <li><a href="alterarCliente.html">Alterar Cliente</a></li>
+        <li><a href="deletarCliente.html">Deletar Cliente</a></li>   
+    </ul>
+
+    <table id="tabela" style="border:1px solid;">
+        <tr>
+            <th style="border:1px solid; padding:0px 25px;">ID</th>
+            <th style="border:1px solid; padding:0px 25px;">Nome</th>
+            <th style="border:1px solid; padding:0px 25px;">Categoria</th>
+            <th style="border:1px solid; padding:0px 25px;">Cidade</th>
+            <th style="border:1px solid; padding:0px 25px;">Placa</th>
+            <th style="border:1px solid; padding:0px 25px;">Preço</th>
+            <th style="border:1px solid; padding:0px 25px;">Periodo</th>
+            <th style="border:1px solid; padding:0px 25px;">Disponivel</th>
+        </tr>
+    </table>
+</body>
+</html>

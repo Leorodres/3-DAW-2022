@@ -13,10 +13,12 @@
             let categoria = document.getElementById("categoria").value;
             let cidade = document.getElementById("cidade").value;
             let preco = document.getElementById("preco").value;
+            let placa = document.getElementById("placa").value;
+            let periodo = document.getElementById("periodo").value;
             let xmlHttp = new XMLHttpRequest();
 
-            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/inserirCarros?nome=" + nome +
-                "&categoria=" + categoria + "&cidade=" + cidade + "&preco=" + preco);
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/inserirCarros.php?nome=" + nome +
+                "&categoria=" + categoria + "&cidade=" + cidade + "&placa=" + placa + "&preco=" + preco + "&periodo=" + periodo);
             xmlHttp.send();
 
             location.reload();
@@ -25,25 +27,27 @@
 </head>
 
 <body>
-    <ul>
-        
-        <a href="index.html" class="logo">Falls Car</a>
+    <ul> 
+        <a href="index.html" class="logo">Falls Car Servidor</a>
         <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
         <li><a href="alterarCarros.html">Alterar Carros</a></li>
-        <li><a href="deletarCarros.html">Deletar Carros</a></li>  
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+        <li><a href="mostrarCarros.html">Mostrar Carros</a></li>
+        
+        <li id="espaco"><a href="registrarCliente.html">Inserir Cliente</a></li>
+        <li><a href="alterarCliente.html">Alterar Cliente</a></li>
+        <li><a href="deletarCliente.html">Deletar Cliente</a></li>   
     </ul>
     <form>
-        <fieldset id="formCentro">
-            <legend style="font-size: 20px;">Digite os Dados da Carros</legend>
+        <fieldset class="formCentro" style="text-align: center;">
+            <legend style="font-size: 20px;  text-align: left;">Digite os Dados da Carros</legend>
             
-            <label>Nome do Carro:</label>
-            <input type="text" name="nome" id="nome"><br><br>
-            <label>Categoria do Carro:</label>
-            <input type="text" name="categoria" id="categoria"><br><br>
-            <label>Cidade do Carro:</label>
-            <input type="text" name="cidade" id="cidade"><br><br>
-            <label>Preço do Carro:</label>
-            <input type="text" name="preco" id="preco"><br><br>
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome"><br><br>
+            <input type="text" name="categoria" id="categoria" placeholder="Digite a categoria"><br><br>
+            <input type="text" name="cidade" id="cidade" placeholder="Digite a cidade"><br><br>
+            <input type="text" name="placa" id="placa" placeholder="Digite a placa"><br><br>
+            <input type="text" name="periodo" id="periodo" placeholder="Digite o periodo disponivel"><br><br>
+            <input type="text" name="preco" id="preco" placeholder="Digite o preço"><br><br>
             <input type="button" class="envio" name="envio" value="Enviar" onclick="enviarForm();">
         </fieldset>
     </form>

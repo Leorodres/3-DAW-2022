@@ -10,14 +10,17 @@
     <script>
         function enviarForm() {
             let nome = document.getElementById("nome").value;
+            let email = document.getElementById("email").value;
             let senha = document.getElementById("senha").value;
-            
+            if (nome != null && nome != "" || senha != null && senha != "") {
             let xmlHttp = new XMLHttpRequest();
-
-            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/registrarCliente?nome=" + nome + "&senha=" + senha);
+            
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/registrarCliente?nome=" + nome+ "&email=" + email + "&senha=" + senha);
             xmlHttp.send();
 
             location.reload();
+            }
+            
         }
     </script>
 </head>
@@ -26,12 +29,13 @@
     <ul>   
         <a href="index.html" class="logo">Falls Car</a>
     </ul>
-    <h1>Falls Car</h1>
+    <h1 class="fallsCar">Falls Car</h1>
     <form> 
-        <fieldset id="formCentro" style="text-align: center;">
+        <fieldset class="formCentro" style="text-align: center;">
             <legend style="font-size: 20px; text-align: left;">Digite seus Dados</legend>
             
             <input type="text" name="nome" id="nome" placeholder="Digite seu nome"><br><br>
+            <input type="password" name="email" id="email" placeholder="Digite seu e-mail"><br><br>
             <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
             
             
