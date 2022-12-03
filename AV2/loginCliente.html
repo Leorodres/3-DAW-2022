@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Logar Cliente AV2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleAV2.css">
+    <script>
+        function enviarForm() {
+            let nome = document.getElementById("nome").value;
+            let senha = document.getElementById("senha").value;
+            console.log(nome);
+            if (nome != null && nome != "" || senha != null && senha != "") {
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let resp = this.responseText;
+                        if(resp != "false"){
+                            window.location.replace("http://localhost/3DAW2022.2Leonardo/AV2/buscarCarros.html?id=" + resp);
+                        }
+                        else{
+                            let msg= document.getElementById("msg");
+                            msg.innerHTML = "Usuario Nao Encontrado";
+                        }
+                    }
+                }
+
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/loginCliente.php?nome=" + nome + "&senha=" + senha);
+                xmlHttp.send();
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <a href="index.html" class="logo">Falls Car</a>
+    </ul>
+    <h1 class="fallsCar">Falls Car</h1>
+    <form>
+        <fieldset id="formCentro" style="text-align: center;">
+            <legend style="font-size: 20px; text-align: left;">Digite seus Dados</legend>
+            <p id="msg"></p>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome"><br><br>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
+
+
+            <input type="button" class="envio" name="envio" value="Entrar" onclick="enviarForm();">
+            <div style="text-align: right;">
+                <a href="registrarCliente.html" id="registrar">Registrar</a>
+            </div>
+        </fieldset>
+    </form>
+    
+</body>
+
+</html>

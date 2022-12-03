@@ -12,13 +12,13 @@
         $dado = $_GET["dado"];
         $conn = new mysqli ($servidor, $user, $pass, $banco);
         if(strcmp($escolha, "1")== 0){
-            $sql="SELECT * FROM `carros` WHERE `cidade` = '$dado'";
+            $sql="SELECT * FROM `carros` WHERE `cidade` = '$dado' AND `disponivel` = 1";
         }
         elseif(strcmp($escolha, "2")==0){
-            $sql="SELECT * FROM `carros` WHERE `categoria` = '$dado'";
+            $sql="SELECT * FROM `carros` WHERE `categoria` = '$dado' AND `disponivel` = 1";
         }
         else{
-            $sql="SELECT * FROM `carros` WHERE `periodo` = '$dado'";
+            $sql="SELECT * FROM `carros` WHERE `periodo` = '$dado' AND `disponivel` = 1";
         }
         
         $result=$conn->query($sql);

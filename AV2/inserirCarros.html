@@ -19,7 +19,7 @@
                 "&categoria=" + categoria + "&cidade=" + cidade + "&preco=" + preco);
             xmlHttp.send();
 
-            //location.reload();
+            location.reload();
         }
     </script>
 </head>
@@ -27,12 +27,10 @@
 <body>
     <ul>
         
-        <p>Falls Car</p>
-        <li><a href="inserirCarros.html">Inserir Carros</a></li>
+        <a href="index.html" class="logo">Falls Car</a>
+        <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
         <li><a href="alterarCarros.html">Alterar Carros</a></li>
-        <li><a href="deletarCarros.html">Deletar Carros</a></li>
-        <li><a href="buscarCarros.html">Buscar Carros</a></li>
-        
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>  
     </ul>
     <form>
         <fieldset id="formCentro">
@@ -46,7 +44,7 @@
             <input type="text" name="cidade" id="cidade"><br><br>
             <label>Preço do Carro:</label>
             <input type="text" name="preco" id="preco"><br><br>
-            <input type="button" name="envio" value="Enviar" onclick="enviarForm();">
+            <input type="button" class="envio" name="envio" value="Enviar" onclick="enviarForm();">
         </fieldset>
     </form>
 </body>

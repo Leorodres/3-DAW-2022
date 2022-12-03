@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registrar Cliente AV2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleAV2.css">
+    <script>
+        function enviarForm() {
+            let nome = document.getElementById("nome").value;
+            let senha = document.getElementById("senha").value;
+            
+            let xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/registrarCliente?nome=" + nome + "&senha=" + senha);
+            xmlHttp.send();
+
+            location.reload();
+        }
+    </script>
+</head>
+
+<body>
+    <ul>   
+        <a href="index.html" class="logo">Falls Car</a>
+    </ul>
+    <h1>Falls Car</h1>
+    <form> 
+        <fieldset id="formCentro" style="text-align: center;">
+            <legend style="font-size: 20px; text-align: left;">Digite seus Dados</legend>
+            
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome"><br><br>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
+            
+            
+            <input type="button" class="envio" name="envio" value="Registrar" onclick="enviarForm();">
+            <div style="text-align: right;">
+                <a href="loginCliente.html" id="login">Login</a>
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+</html>

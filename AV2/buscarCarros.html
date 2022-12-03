@@ -67,8 +67,36 @@
             tdPeriodo.appendChild(textnode);
             tr.appendChild(tdPeriodo);
 
+            let tdBotao = document.createElement("td");
+            //Botao Comprar
+            let butComprar = document.createElement("input");
+            butComprar.setAttribute("type", "button");
+            butComprar.setAttribute("value", "Comprar");
+            butComprar.setAttribute("style", "margin-right: 5px");
+            butComprar.setAttribute("class", "botao");
+            tdBotao.appendChild(butComprar);
+            tr.appendChild(tdBotao);
+
+            //Botao Detalhes
+            let butDetalhes = document.createElement("input");
+            butDetalhes.setAttribute("type", "button");
+            butDetalhes.setAttribute("value", "Detalhes");
+            butDetalhes.setAttribute("class", "botao");
+            tdBotao.appendChild(butDetalhes);
+            tr.appendChild(tdBotao);
+
             tabela.appendChild(tr);
             tabela.style.display = "table";
+            
+            butComprar.onclick = function alugarCarro(params){
+                let urlSearch = new URLSearchParams(location.search);
+                idCliente = urlSearch.get('id');
+
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/alugarCarros.php?idCliente=" + idCliente + "&idCarro=" + linha.id + 
+                "&periodo=" + linha.periodo + "&preco=" + linha.preco);
+                xmlHttp.send();
+            }
             
             let input = document.getElementById("busca");
             input.setAttribute("onclick", "location.reload();");
@@ -82,10 +110,7 @@
 
 <body>
     <ul id="menu">
-        <p>Falls Car</p>
-        <li><a href="inserirCarros.html">Inserir Carros</a></li>
-        <li><a href="alterarCarros.html">Alterar Carros</a></li>
-        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+        <a href="index.html" class="logo">Falls Car</a>
     </ul>
 
     <form >
@@ -100,7 +125,7 @@
             <label for="busca">Digite a busca:</label>
             <input type="text" name="busca" id="busca"><br><br>
 
-            <input type="button" name="envio" id="envio" value="Enviar" onclick="buscarCarros();">
+            <input type="button" name="envio" class="envio" id="envio" value="Enviar" onclick="buscarCarros();">
             
         </fieldset>
     </form>
@@ -112,6 +137,7 @@
             <th>Cidade</th>
             <th>Preço</th>
             <th>Periodo Disponível</th>
+            <th>Funções</th>
         </tr>
     </table>
 </body>
