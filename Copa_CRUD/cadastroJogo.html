@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cadastrar Jogo CRUD Copa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estiloCopa.css">
+    <script>
+        
+        function enviarForm() {
+            let selecaoA = document.getElementById("selecaoA").value;
+            let selecaoB = document.getElementById("selecaoB").value;
+            let golsA = document.getElementById("golsA").value;
+            let golsB = document.getElementById("golsB").value;
+            let local = document.getElementById("local").value;
+            let data = document.getElementById("data").value;
+            let hora = document.getElementById("hora").value;
+         
+            if(selecaoA!=selecaoB){
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/cadastroJogo.php?data=" + data +
+                "&hora=" + hora + "&local=" + local + "&selecaoA=" + selecaoA + "&selecaoB=" + selecaoB + "&golsA=" + golsA + "&golsB=" + golsB);
+            xmlHttp.send();
+            console.log(xmlHttp.responseText);
+            location.reload();
+            }
+            else{
+                createElem
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li><a href="inserirSelecao.html">Inserir Seleção</a></li>
+        <li><a href="alterarSelecao.html">Alterar Seleção</a></li>
+        <li><a href="cadastroJogo.html">Cadastrar Jogo</a></li>
+        <li><a href="calendarioJogo.html">Resultado do Jogo</a></li>
+        <li><a href="calendarioTodo.html">Calendário Inteiro</a></li>
+        <li><a href="calendarioSelecao.html">Calendário de uma Seleção</a></li>
+        <li><a href="calendarioGrupo.html">Calendário de um Grupo</a></li>
+        <li><a href="oitavas.html">Mostrar Oitavas de Final</a></li>
+    </ul>
+    <form id="formJogo">
+        <fieldset>
+            <legend style="font-size: 20px;">Digite os Dados do Jogo</legend>
+
+            <label>Data do Jogo:</label>
+            <input type="text" name="data" id="data"><br><br>
+            <label>Hora do Jogo:</label>
+            <input type="text" name="hora" id="hora"><br><br>
+            <label>Local do Jogo:</label>
+            <input type="text" name="local" id="local"><br><br>
+            <label>Nome da seleção A:</label>
+            <input type="text" name="selecaoA" id="selecaoA"><br><br>
+            <label>Nome da seleção B:</label>
+            <input type="text" name="selecaoB" id="selecaoB"><br><br>
+            <label>Gols da Seleção A:</label>
+            <input type="text" name="golsA" id="golsA"><br><br>
+            <label>Gols da Seleção B:</label>
+            <input type="text" name="golsB" id="golsB"><br><br>
+            <input type="button" name="envio" value="Enviar" onclick="enviarForm();">
+        </fieldset>
+    </form>
+</body>
+
+</html>
