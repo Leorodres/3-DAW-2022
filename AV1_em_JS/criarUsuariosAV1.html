@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Arquivo Usuario JS</title>
+    <style> input{margin-top: 10px;} fieldset {background-color: #eeeeee;} legend {background-color: gray;color: white;padding: 5px 10px;}</style>
+</head>
+<body>
+    <ul>
+        <li><a href="incluirAV1.html">Incluir Disciplina</a></li>
+        <li><a href="criarUsuariosAV1.html">Criar Usuário</a></li>
+        <li><a href="alterarAV1.html">Alterar Disciplina</a></li>
+        <li><a href="excluirAV1.html">Excluir Disciplina</a></li>
+        <li><a href="listarUmAV1.html">Listar Um Disciplina</a></li>
+        <li><a href="listarTodosAV1.html">Listar Todos Disciplina</a></li>
+    </ul>
+    <form action="usuarioArquivo.php" method="POST" enctype="multipart/form-data" >
+        <fieldset>
+            <legend style="font-size: 20px;">Insira o arquivo de texto com os usuários</legend>
+            <input type="file" name="uploadArq" id="uploadArq" accept=".txt"><br>
+            <input type="submit" value="Enviar" name="submit">
+        </fieldset>
+    </form>
+</body>
+</html>

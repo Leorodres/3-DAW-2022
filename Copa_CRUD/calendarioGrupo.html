@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Calendário Seleção Copa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estiloCopa.css">
+    <script>
+        function carregaJogo() {
+
+            let grupo = document.getElementById("grupo").value;
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText);
+                    let x = 0;
+
+                    let valor = (obj[x].local).localeCompare("undefined");
+                    if (valor != 0) {
+                        for (x = 0; x < obj.length; x++) {
+                            let linha = obj[x];
+                            criarLinhaTabela(linha);
+                        }
+                    }
+                }
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/calendarioGrupo.php?grupo=" + grupo);
+            xmlHttp.send();
+
+        }
+
+        function criarLinhaTabela(linha) {
+            let tabela = document.getElementById("tabela");
+            let tr = document.createElement("tr");
+
+            //Coluna data
+            let tdData = document.createElement("td");
+            textnode = document.createTextNode(linha.data);
+            tdData.appendChild(textnode);
+            tr.appendChild(tdData);
+
+            //Coluna hora
+            let tdHora = document.createElement("td");
+            textnode = document.createTextNode(linha.hora);
+            tdHora.appendChild(textnode);
+            tr.appendChild(tdHora);
+
+            //Coluna Local
+            let tdLocal = document.createElement("td");
+            textnode = document.createTextNode(linha.local);
+            tdLocal.appendChild(textnode);
+            tr.appendChild(tdLocal);
+
+            //Coluna SelecaoA
+            let tdSelA = document.createElement("td");
+            textnode = document.createTextNode(linha.selecaoA);
+            tdSelA.appendChild(textnode);
+            tr.appendChild(tdSelA);
+
+            //Coluna golsA
+            let tdGolA = document.createElement("td");
+            textnode = document.createTextNode(linha.golsA);
+            tdGolA.appendChild(textnode);
+            tr.appendChild(tdGolA);
+
+            //Coluna SelecaoB
+            let tdSelB = document.createElement("td");
+            textnode = document.createTextNode(linha.selecaoB);
+            tdSelB.appendChild(textnode);
+            tr.appendChild(tdSelB);
+
+            //Coluna golsB
+            let tdGolB = document.createElement("td");
+            textnode = document.createTextNode(linha.golsB);
+            tdGolB.appendChild(textnode);
+            tr.appendChild(tdGolB);
+
+            tabela.appendChild(tr);
+            tabela.style.display = "table";
+            let input = document.getElementById("grupo");
+            input.setAttribute("onclick", "location.reload();");
+        }
+
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li><a href="inserirSelecao.html">Inserir Seleção</a></li>
+        <li><a href="alterarSelecao.html">Alterar Seleção</a></li>
+        <li><a href="cadastroJogo.html">Cadastrar Jogo</a></li>
+        <li><a href="calendarioJogo.html">Resultado do Jogo</a></li>
+        <li><a href="calendarioTodo.html">Calendário Inteiro</a></li>
+        <li><a href="calendarioSelecao.html">Calendário de uma Seleção</a></li>
+        <li><a href="calendarioGrupo.html">Calendário de um Grupo</a></li>
+        <li><a href="oitavas.html">Mostrar Oitavas de Final</a></li>
+    </ul>
+
+    <form id="form">
+        <fieldset>
+            <legend style="font-size: 20px;">Digite o nome do Grupo que está buscando</legend>
+            <label>Letra do Grupo:</label>
+            <input type="text" name="grupo" id="grupo"><br><br>
+            <input type="button" name="envio" value="Enviar" onclick="carregaJogo();">
+        </fieldset>
+    </form>
+
+    <table id="tabela" style="border:1px solid; display: none;margin: 10px;">
+        <tr style="border:1px solid">
+            <th style="border:1px solid; padding:0px 25px;">Data</th>
+            <th style="border:1px solid; padding:0px 25px;">Hora</th>
+            <th style="border:1px solid; padding:0px 25px;">Local</th>
+            <th style="border:1px solid; padding:0px 25px;">Equipe A</th>
+            <th style="border:1px solid; padding:0px 25px;">Gols</th>
+            <th style="border:1px solid; padding:0px 25px;">Equipe B</th>
+            <th style="border:1px solid; padding:0px 25px;">Gols</th>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Disciplina JS</title>
+    <script>
+        function abrirForm() {
+                let id = document.getElementById("id").value;
+                
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1_em_JS/excluirAV1?id=" + id);
+                xmlHttp.send();
+                
+                location.reload();
+                
+            }
+    </script>
+    <style> fieldset {background-color: #eeeeee;} legend {background-color: gray;color: white;padding: 5px 10px;}</style>
+</head>
+<body>
+    <ul>
+        <li><a href="incluirAV1.html">Incluir Disciplina</a></li>
+        <li><a href="criarUsuariosAV1.html">Criar Usuário</a></li>
+        <li><a href="alterarAV1.html">Alterar Disciplina</a></li>
+        <li><a href="excluirAV1.html">Excluir Disciplina</a></li>
+        <li><a href="listarUmAV1.html">Listar Um Disciplina</a></li>
+        <li><a href="listarTodosAV1.html">Listar Todos Disciplina</a></li>
+    </ul>
+    <form id="form">  
+      <fieldset>
+        <legend style="font-size: 20px;">Digite o ID da disciplina que irá excluir</legend>
+          <label>Id da Disciplina:</label>
+          <input type = "text" name = "id" id = "id"><br><br>
+          <input type = "button" name = "envio" value="Enviar" 
+            onclick="abrirForm();">
+        </fieldset>
+    </form>
+</body>
+</html>

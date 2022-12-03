@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Seleção Copa</title>
+    <link rel="stylesheet" href="estiloCopa.css">
+    <script>
+        function enviarForm() {
+            let nome = document.getElementById("nome").value;
+            let nomeAlt = document.getElementById("nomeAlt").value;
+            let tecnico = document.getElementById("tecnicoAlt").value;
+            let grupo = document.getElementById("grupoAlt").value;
+            let pontos = document.getElementById("pontoAlt").value;
+
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/alterarSelecao.php?nome=" + nome + "&nomeAlt=" + nomeAlt + "&tecnico=" + tecnico
+                + "&grupo=" + grupo + "&pontos=" + pontos);
+            xmlHttp.send();
+
+            location.reload();
+        }
+
+        function buscarSelecao() {
+            let nome = document.getElementById("nome").value;
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                console.log("mudou status: " + this.readyState);
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText);
+
+                    document.getElementById("nomeAlt").value = obj.nome;
+                    document.getElementById("tecnicoAlt").value = obj.tecnico;
+                    document.getElementById("grupoAlt").value = obj.grupo;
+                    document.getElementById("pontoAlt").value = obj.pontos;
+
+                    let formAlt = document.getElementById("formAlterar");
+                    formAlt.style.display = "block";
+                }
+            }
+
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/buscarSelecao.php?nome=" + nome);
+            xmlHttp.send();
+
+        }
+    </script>
+
+<body>
+    <ul>
+        <li><a href="inserirSelecao.html">Inserir Seleção</a></li>
+        <li><a href="alterarSelecao.html">Alterar Seleção</a></li>
+        <li><a href="cadastroJogo.html">Cadastrar Jogo</a></li>
+        <li><a href="calendarioJogo.html">Resultado do Jogo</a></li>
+        <li><a href="calendarioTodo.html">Calendário Inteiro</a></li>
+        <li><a href="calendarioSelecao.html">Calendário de uma Seleção</a></li>
+        <li><a href="calendarioGrupo.html">Calendário de um Grupo</a></li>
+        <li><a href="oitavas.html">Mostrar Oitavas de Final</a></li>
+    </ul>
+    <form id="formBusca">
+        <fieldset>
+            <legend style="font-size: 20px;">Digite o nome da Seleção que irá alterar</legend>
+            <label>Nome da Seleção:</label>
+            <input type="text" name="nome" id="nome"><br><br>
+            <input type="button" name="envio" value="Enviar" onclick="buscarSelecao();">
+        </fieldset>
+    </form>
+
+    <form id="formAlterar" style="display:none">
+        <fieldset style="margin-top: 10px;">
+            <legend style="font-size: 20px;">Digite os dados novos</legend>
+
+            <label>Nome:</label>
+            <input type="text" name="nome" id="nomeAlt" value=""><br><br>
+            <label>Tecnico:</label>
+            <input type="text" name="tecnico" id="tecnicoAlt" value=""><br><br>
+            <label>Grupo:</label>
+            <input type="text" name="grupo" id="grupoAlt" value=""><br><br>
+            <label>Pontos:</label>
+            <input type="text" name="ponto" id="pontoAlt" value=""><br><br>
+            <input type="button" name="envio" value="Enviar" onclick="enviarForm();">
+        </fieldset>
+    </form>
+</body>
+
+</html>

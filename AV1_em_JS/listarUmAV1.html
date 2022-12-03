@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Listar Um Disciplina JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        function carregaDisciplina() {
+
+            let id = document.getElementById("id").value;
+            let xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let objAlunos = this.responseText;
+                    let obj = JSON.parse(this.responseText);
+                    criarLinhaTabela(obj);
+                }
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/AV1_em_JS/listarUmAV1?id=" + id);
+            xmlHttp.send();
+
+        }
+
+        function criarLinhaTabela(linha) {
+            let tabela = document.getElementById("tabela");
+            let tr = document.createElement("tr");
+
+            //Coluna ID
+            let tdId = document.createElement("td");
+            textnode = document.createTextNode(linha.id);
+            tdId.appendChild(textnode);
+            tr.appendChild(tdId);
+
+            //Coluna Nome
+            let tdNome = document.createElement("td");
+            textnode = document.createTextNode(linha.nome);
+            tdNome.appendChild(textnode);
+            tr.appendChild(tdNome);
+
+            //Coluna Periodo
+            let tdPeriodo = document.createElement("td");
+            textnode = document.createTextNode(linha.periodo);
+            tdPeriodo.appendChild(textnode);
+            tr.appendChild(tdPeriodo);
+
+            //Coluna Pre-Requisito
+            let tdPreReq = document.createElement("td");
+            textnode = document.createTextNode(linha.idPreRequisito);
+            tdPreReq.appendChild(textnode);
+            tr.appendChild(tdPreReq);
+
+            //Coluna Creditos
+            let tdCreditos = document.createElement("td");
+            textnode = document.createTextNode(linha.credito);
+            tdCreditos.appendChild(textnode);
+            tr.appendChild(tdCreditos);
+
+            tabela.appendChild(tr);
+            tabela.style.display = "table";
+            let input = document.getElementById("id");
+            input.setAttribute("onclick", "location.reload();");
+        }
+
+    </script>
+    <style>
+        tr {
+            text-align: center;
+        }
+
+        fieldset {
+            background-color: #eeeeee;
+        }
+
+        legend {
+            background-color: gray;
+            color: white;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a href="incluirAV1.html">Incluir Disciplina</a></li>
+        <li><a href="criarUsuariosAV1.html">Criar Usuário</a></li>
+        <li><a href="alterarAV1.html">Alterar Disciplina</a></li>
+        <li><a href="excluirAV1.html">Excluir Disciplina</a></li>
+        <li><a href="listarUmAV1.html">Listar Um Disciplina</a></li>
+        <li><a href="listarTodosAV1.html">Listar Todos Disciplina</a></li>
+    </ul>
+
+    <form id="form">
+        <fieldset>
+            <legend style="font-size: 20px;">Digite o ID da disciplina que está buscando</legend>
+            <label>Id da Disciplina:</label>
+            <input type="text" name="id" id="id"><br><br>
+            <input type="button" name="envio" value="Enviar" onclick="carregaDisciplina();">
+        </fieldset>
+    </form>
+
+    <table id="tabela" style="border:1px solid; display: none;margin: 10px;">
+        <tr style="border:1px solid">
+            <th style="border:1px solid; padding:0px 25px;">ID</th>
+            <th style="border:1px solid; padding:0px 25px;">Nome</th>
+            <th style="border:1px solid; padding:0px 25px;">Período</th>
+            <th style="border:1px solid; padding:0px 25px;">Pre-Requisito</th>
+            <th style="border:1px solid; padding:0px 25px;">Créditos</th>
+        </tr>
+    </table>
+</body>
+
+</html>
