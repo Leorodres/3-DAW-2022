@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Carro AV2</title>
+    <link rel="stylesheet" href="styleAV2.css">
+    <script>
+        function delForm() {
+                let email = document.getElementById("email").value;
+                
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/deletarCliente.php?email=" + email);
+                xmlHttp.send();
+                
+                location.reload();
+                
+            }
+    </script>
+</head>
+<body>
+    <ul> 
+        <a href="index.html" class="logo">Falls Car Servidor</a>
+        <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
+        <li><a href="alterarCarros.html">Alterar Carros</a></li>
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+        <li><a href="mostrarCarros.html">Mostrar Carros</a></li>
+        
+        <li id="espaco"><a href="registrarCliente.html">Inserir Cliente</a></li>
+        <li><a href="alterarCliente.html">Alterar Cliente</a></li>
+        <li><a href="deletarCliente.html">Deletar Cliente</a></li>
+    </ul>
+    <form>
+        <fieldset class="formCentro" style="text-align: center;">
+            <legend style="font-size: 20px;  text-align: left;">Digite o email do Cliente para Excluir</legend>
+            <input type="text" name="email" id="email" placeholder="Digite o email"><br><br>
+          <input type="button" class="envio" name="envio" value="Excluir" onclick="delForm();">
+        </fieldset>
+    </form>
+</body>
+</html>

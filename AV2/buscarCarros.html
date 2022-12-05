@@ -89,12 +89,19 @@
             
             butComprar.onclick = function alugarCarro(params){
                 let urlSearch = new URLSearchParams(location.search);
-                idCliente = urlSearch.get('id');
+                let idCliente = urlSearch.get('id');
 
                 let xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/alugarCarros.php?idCliente=" + idCliente + "&idCarro=" + linha.id + 
                 "&periodo=" + linha.periodo + "&preco=" + linha.preco);
                 xmlHttp.send();
+            }
+
+            butDetalhes.onclick = function alugarCarro(params){
+                let urlSearch = new URLSearchParams(location.search);
+                let idCliente = urlSearch.get('id');
+
+                window.location.replace("http://localhost/3DAW2022.2Leonardo/AV2/mostrarDetalhes.html?idCliente="+ idCliente + "&placa=" + linha.placa);
             }
             
             let input = document.getElementById("busca");

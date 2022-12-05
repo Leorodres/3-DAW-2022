@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script>
+        function mostrarDetalhes() {
+            let xmlHttp = new XMLHttpRequest();
+            let urlSearch = new URLSearchParams(location.search);
+            let placa = urlSearch.get('placa');
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText);
+                    document.title = obj.nome;
+                    let nomeCarro = document.getElementsByClassName("nomeCarro");
+                    let id = document.getElementById("idExib");
+                    let preco = document.getElementById("preco");
+                    preco.innerText = "R$: " + obj.preco + ",00";
+                    let periodo = document.getElementById("periodo");
+                    periodo.innerText = "Periodo Disponivel: " + obj.periodo + " Dias";
+
+                    id.innerText = obj.id;
+
+                    for (i = 0; i < nomeCarro.length; i++) {
+                        nomeCarro[i].innerText = obj.nome;
+                    }
+
+                    let disp = document.getElementById("disp")
+                    if (obj.disponivel == 1) {
+                        disp.setAttribute("style", "color: green")
+                        disp.innerText = "DISPONIVEL";
+                    }
+                    else {
+                        disp.setAttribute("style", "color: red")
+                        disp.innerText = "INDISPONIVEL";
+                    }
+
+                    let but = document.getElementById("comprar")
+                    but.onclick = function alugarCarro(params) {
+                        let urlSearch = new URLSearchParams(location.search);
+                        let idCliente = urlSearch.get('idCliente');
+
+                        let xmlHttp = new XMLHttpRequest();
+                        xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/alugarCarros.php?idCliente=" + idCliente + "&idCarro=" + obj.id +
+                            "&periodo=" + obj.periodo + "&preco=" + obj.preco);
+                        xmlHttp.send();
+                        location.reload();
+                    }
+                }
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/busca1Carro?placa=" + placa);
+            xmlHttp.send();
+        }
+
+        
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleAV2.css">
+    <title>Document</title>
+</head>
+
+<body onload="mostrarDetalhes();">
+    <ul>
+        <a href="index.html" class="logo">Falls Car</a>
+    </ul>
+    <div class="detalhes">
+        <div class="container">
+            <div class="produto">
+                <h3 style="text-align: left;">Cód. Veículo: #<span id="idExib">x</span></h3>
+                <figure
+                    style="border: solid black 1px; width: 300px; height: 150px; margin-left: auto; margin-right: auto; margin-top: 0px;">
+                    <img style="background-color: #ddd; " src="" alt="imagem carro">
+                </figure>
+                <h1 class="nomeCarro">Nome Carro </h1>
+                <h2 id="disp"></h2>
+                <p style="text-align:center; font-size: 15px;">
+                    Ao retirar o <span class="nomeCarro">x</span>, o condutor principal terá que deixar um depósito
+                    caução (reembolsável)
+                    no valor de R$ 500,00 no cartão de crédito.
+                    Dinheiro e cartões de débito não serão aceitos.
+                    Os funcionários no balcão confirmarão o valor deste depósito.O seu aluguel inclui quilômetro
+                    livre.<br>
+                </p>
+                <h3 id="preco" style="margin:0;"></h3> <h3 id="periodo" style="margin:0;"></h3>
+                <input type="button" value="Comprar" id = "comprar" class="envio"
+                    style="margin-top: 25px;margin-left: 45%;margin-right: 45%;" onclick="alugarCarro();">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

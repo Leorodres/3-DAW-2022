@@ -20,6 +20,7 @@
                 xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/alterarCarros.php?&nome=" + nome + "&categoria=" + categoria
                 + "&cidade=" + cidade + "&placa=" + placa  + "&preco=" + preco  + "&periodo=" + periodo + "&disponivel=" + disponivel);
                 xmlHttp.send();
+                location.reload();
             }
        
         function buscarCarro() {

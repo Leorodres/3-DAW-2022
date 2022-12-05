@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleAV2.css">
+    <title>Alterar Cliente AV2</title>
+    <script>
+        function enviarForm() {
+                let email = document.getElementById("email").value;
+                let nome = document.getElementById("nomeAlt").value;
+                let emailAlt = document.getElementById("emailAlt").value;
+                let senha = document.getElementById("senha").value;
+
+                if (nome != null && nome != "" && senha != null && senha != "" && email != null && email != "") { 
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/alterarCliente.php?email=" + email + "&nome=" + nome + 
+                "&emailAlt=" + emailAlt + "&senha=" + senha);
+                xmlHttp.send();
+                location.reload();
+            }
+        }
+       
+        function buscarCliente() {
+            let email = document.getElementById("email").value;
+            let xmlHttp = new XMLHttpRequest();
+            
+            xmlHttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText);
+                    
+                    document.getElementById("nomeAlt").value = obj.nome;
+                    document.getElementById("emailAlt").value = obj.email;
+
+                    let formAlt = document.getElementById("formAlterar");
+                    formAlt.style.display = "block";
+                }
+            }
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/AV2/buscar1Cliente.php?email=" + email);
+            xmlHttp.send();
+        }
+
+    </script>
+</head>
+<body>
+    <ul> 
+        <a href="index.html" class="logo">Falls Car Servidor</a>
+        <li id="espaco"><a href="inserirCarros.html">Inserir Carros</a></li>
+        <li><a href="alterarCarros.html">Alterar Carros</a></li>
+        <li><a href="deletarCarros.html">Deletar Carros</a></li>
+        <li><a href="mostrarCarros.html">Mostrar Carros</a></li>
+        
+        <li id="espaco"><a href="registrarCliente.html">Inserir Cliente</a></li>
+        <li><a href="alterarCliente.html">Alterar Cliente</a></li>
+        <li><a href="deletarCliente.html">Deletar Cliente</a></li>   
+    </ul>
+    <form>
+        <fieldset class="formCentro" style="text-align: center;">
+            <legend style="font-size: 20px;  text-align: left;">Digite o email do Cliente para Alterar</legend>
+            <input type="text" name="email" id="email" placeholder="Digite o email"><br><br>
+          <input type="button" class="envio" name="envio" value="Buscar" onclick="buscarCliente();">
+        </fieldset> 
+    </form>
+
+    <form id="formAlterar" style="display:none">
+        <fieldset class="formCentro" style="text-align: center;">
+            <label>Nome:</label>
+            <input type = "text" name = "nome" id = "nomeAlt" value=""><br><br>
+            <label>E-mail:</label>
+            <input type = "text" name = "email" id = "emailAlt" value=""><br><br>
+            <label>Senha:</label>
+            <input type = "password" name = "senha" id = "senha" value=""><br><br>
+            
+            <input type = "button" class="envio" name = "envio" value="Alterar" 
+              onclick="enviarForm();">
+          </fieldset>
+      </form>
+</body>
+</html>
