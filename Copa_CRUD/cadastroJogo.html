@@ -20,7 +20,7 @@
          
             if(selecaoA!=selecaoB){
             let xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/cadastroJogo.php?data=" + data +
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/Copa_CRUD/cadastroJogo.php?data=" + data +
                 "&hora=" + hora + "&local=" + local + "&selecaoA=" + selecaoA + "&selecaoB=" + selecaoB + "&golsA=" + golsA + "&golsB=" + golsB);
             xmlHttp.send();
             console.log(xmlHttp.responseText);

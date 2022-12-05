@@ -24,7 +24,7 @@
                         verPontos(vetorTime);
                     }
                 }
-                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/oitavas.php");
+                xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/Copa_CRUD/oitavas.php");
                 xmlHttp.send();
         }
 
@@ -37,8 +37,9 @@
 
             for(let i=1;i<vetorTime.length;i++){
                 if(vetorTime[i].grupo.localeCompare(grupoAtual)== 0 ){
+                      
                     if(vetorTime[i].pontos>pontosPrim){
-                        
+                          
                         pontosSeg=pontosPrim;
                         segundo = primeiro;
                         
@@ -46,9 +47,11 @@
                         primeiro = vetorTime[i];
                         
                     }
-                    else if(vetorTime[i].pontos==pontosPrim||grupoAtual.localeCompare(segundo.grupo)!=0){
+                    else if(vetorTime[i].pontos==pontosPrim|| segundo == undefined || grupoAtual.localeCompare(segundo.grupo)!=0 || vetorTime[i].pontos>pontosSeg){
+                       
                         pontosSeg=vetorTime[i].pontos;
                         segundo = vetorTime[i];
+                        console.log(segundo)
                     }
                 }
                 else{

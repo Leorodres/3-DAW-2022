@@ -16,7 +16,7 @@
             let pontos = document.getElementById("pontoAlt").value;
 
             let xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/alterarSelecao.php?nome=" + nome + "&nomeAlt=" + nomeAlt + "&tecnico=" + tecnico
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/Copa_CRUD/alterarSelecao.php?nome=" + nome + "&nomeAlt=" + nomeAlt + "&tecnico=" + tecnico
                 + "&grupo=" + grupo + "&pontos=" + pontos);
             xmlHttp.send();
 
@@ -41,7 +41,7 @@
                 }
             }
 
-            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/JSCrud/Copa_CRUD/buscarSelecao.php?nome=" + nome);
+            xmlHttp.open("GET", "http://localhost/3DAW2022.2Leonardo/Copa_CRUD/buscarSelecao.php?nome=" + nome);
             xmlHttp.send();
 
         }
